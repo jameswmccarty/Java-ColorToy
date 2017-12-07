@@ -6,6 +6,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 
 public class ControlPanel extends JPanel{
     
@@ -15,6 +16,7 @@ public class ControlPanel extends JPanel{
 	private JLabel dr_lbl, dg_lbl, db_lbl;
     private JButton update; //update all quantities
 	private JButton printer; //dump values to stdout
+	private JButton randbtn; //randomize starting values
     private JTextField ar_txt = new JTextField(4);
     private JTextField ag_txt = new JTextField(4);
     private JTextField ab_txt = new JTextField(4);
@@ -67,10 +69,12 @@ public class ControlPanel extends JPanel{
        
 	update = new JButton("Update");
 	printer = new JButton("Print");
+	randbtn = new JButton("Random");
 	this.colortoy = colortoypanel;
 
 	update.addActionListener(new ButtonListener(update));
 	printer.addActionListener(new PrintListener(printer));
+	randbtn.addActionListener(new RandomListener(randbtn));
 
 	add(func_lbl);
 	add(Box.createRigidArea(new Dimension(50, 0)));
@@ -102,9 +106,45 @@ public class ControlPanel extends JPanel{
 	add(params);
 	add(Box.createRigidArea(new Dimension(50, 0)));
 	add(update);
+	add(randbtn);
 	add(printer);
 
     }
+
+    private class RandomListener implements ActionListener{
+	
+	private JButton button;
+	
+	public RandomListener (JButton button) {
+	    this.button = button;
+	}
+
+	public void actionPerformed (ActionEvent event) {
+	    
+	    try {
+		DecimalFormat decimalFormat = new DecimalFormat("0.00");
+		ar_txt.setText(decimalFormat.format(Math.random()));
+		ab_txt.setText(decimalFormat.format(Math.random()));
+		ag_txt.setText(decimalFormat.format(Math.random()));
+
+		br_txt.setText(decimalFormat.format(Math.random()));
+		bb_txt.setText(decimalFormat.format(Math.random()));
+		bg_txt.setText(decimalFormat.format(Math.random()));
+
+		cr_txt.setText(decimalFormat.format(((int)(Math.random() * 5.)) * 0.5));
+		cb_txt.setText(decimalFormat.format(((int)(Math.random() * 5.)) * 0.5));
+		cg_txt.setText(decimalFormat.format(((int)(Math.random() * 5.)) * 0.5));
+
+		dr_txt.setText(decimalFormat.format(Math.random()));
+		db_txt.setText(decimalFormat.format(Math.random()));
+		dg_txt.setText(decimalFormat.format(Math.random()));
+
+	    }
+	    catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Unknown error creating values.", "Error", JOptionPane.ERROR_MESSAGE);
+	    }
+	}
+	}
 
     private class PrintListener implements ActionListener{
 	

@@ -85,8 +85,7 @@ public class ColorToyPanel extends JPanel {
 		System.out.println(c_r + " " + c_g + " " + c_b);
 		System.out.println(d_r + " " + d_g + " " + d_b);
 	}
-
-    
+ 
     public void paintComponent(Graphics page){
 	
 	super.paintComponent(page);
