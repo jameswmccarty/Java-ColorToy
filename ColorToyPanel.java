@@ -38,6 +38,12 @@ public class ColorToyPanel extends JPanel {
 
     public void plotpoint(Canvas canvas, Graphics page, Point p, double t)
     {
+		Color color = getColorByNormal(t);
+		canvas.plot(p, page, color);
+    }
+
+	public Color getColorByNormal(double t)
+	{
 		double r_out = 0.;
 		double g_out = 0.;
 		double b_out = 0.;
@@ -55,8 +61,8 @@ public class ColorToyPanel extends JPanel {
 		g %= 255;
 		b %= 255;
 		Color color = new Color(r,g,b);
-		canvas.plot(p, page, color);//}
-    }
+		return color;	
+	}
 
 	public void gotUpdate(double ar, double ag, double ab,
 						  double br, double bg,	double bb,
