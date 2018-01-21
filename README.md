@@ -41,6 +41,18 @@ Example Input File
 
 ![Example Input File](ColorToyInput_demo.png "Input Example")
 
-Example Output File
+Example Output File (default program color palette)
 
 ![Example Output File](ColorToyOut_demo.png "Output Example")
+
+Example Output File with color palette specified by parameters:
+
+0.46 0.5 0.15
+
+0.34 0.47 0.43
+
+1.5 0.0 0.5
+
+0.1 0.64 0.48
+
+![Example Output File](ColorToyOut_demo2.png "Output Example")
