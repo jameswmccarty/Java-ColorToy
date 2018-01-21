@@ -38,6 +38,9 @@ The Apply button maps the currently displayed palette on the image file specifie
 
 # Demos
 Example Input File
-![Example Input File(ColorToyInput_demo.png "Input Example")
+
+![Example Input File](ColorToyInput_demo.png "Input Example")
+
 Example Output File
-![Example Output File(ColorToyOut_demo.png "Output Example")
+
+![Example Output File](ColorToyOut_demo.png "Output Example")
