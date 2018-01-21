@@ -27,7 +27,7 @@ public class LoadImageUtil extends Component {
        }
     }
 
-	public void applyColorPalette(ColorToyPanel ctp) {
+	public void applyColorPalette(ColorToyPanel ctp, boolean ignoreBlk) {
 		
 		if (input_img == null) {
 		   JOptionPane.showMessageDialog(null, 
@@ -49,6 +49,9 @@ public class LoadImageUtil extends Component {
 				acc += in_color.getBlue();
 				pixel_normal = (double) acc / (255.* 3.);
 				f_value = ctp.getColorByNormal(pixel_normal);
+				if(ignoreBlk && acc == 0) { //skip pixels with 0,0,0 value.
+					f_value = in_color;
+				}
 				input_img.setRGB(x, y, f_value.getRGB());
 			}
 		}		

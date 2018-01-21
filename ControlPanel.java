@@ -33,6 +33,7 @@ public class ControlPanel extends JPanel{
     private JTextField db_txt = new JTextField(4);
 	private JTextField out_txt = new JTextField(20);
 	private JTextField in_txt = new JTextField(20);
+	private JCheckBox ignoreBlkBox = new JCheckBox("Ignore Black on application.");
 	private JPanel params = new JPanel();
 	private JPanel btnarea = new JPanel();
 
@@ -119,7 +120,7 @@ public class ControlPanel extends JPanel{
 	params.add(db_txt);
 	add(params);
 	add(Box.createRigidArea(new Dimension(50, 0)));
-	btnarea.setLayout(new GridLayout(4, 2));
+	btnarea.setLayout(new GridLayout(5, 2));
 	btnarea.add(randbtn);
 	btnarea.add(update);
 	btnarea.add(printer);
@@ -128,6 +129,7 @@ public class ControlPanel extends JPanel{
 	btnarea.add(in_txt);
 	btnarea.add(out_lbl);
 	btnarea.add(out_txt);
+	btnarea.add(ignoreBlkBox);
 	add(btnarea);
 
     }
@@ -210,7 +212,7 @@ public class ControlPanel extends JPanel{
 	    
 	    try {
 			imageloader = new LoadImageUtil(in_txt.getText());
-			imageloader.applyColorPalette(colortoy);
+			imageloader.applyColorPalette(colortoy, ignoreBlkBox.isSelected());
 			imageloader.writeOutImage(out_txt.getText());  
 	    }
 	    catch(Exception e) {

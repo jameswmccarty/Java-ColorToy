@@ -36,6 +36,8 @@ The 'Print to Console' button outputs the function parameters to the system Cons
 
 The 'Apply to Input File' button maps the currently displayed palette on the image file specified by the Input File Path, and writes the output to a file location specified by the Output File Path.  TIFF, PNG, JPEG, and BMP file types are supported.
 
+If the checkbox "Ignore Black on application" is selected, then pixels that are black in the source image will remain black on the output image.  Otherwise, black pixels will be adjusted to a new color value based on the currently displayed palette.
+
 # Demos
 Example Input File
 
@@ -47,12 +49,9 @@ Example Output File (default program color palette)
 
 Example Output File with color palette specified by parameters:
 
-0.46 0.5 0.15
-
-0.34 0.47 0.43
-
-1.5 0.0 0.5
-
-0.1 0.64 0.48
+0.46 0.5 0.15  
+0.34 0.47 0.43  
+1.5 0.0 0.5  
+0.1 0.64 0.48  
 
 ![Example Output File](ColorToyOut_demo2.png "Output Example")
