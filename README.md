@@ -35,3 +35,9 @@ The Update button redraws the color bar.
 The Print button outputs the function parameters to the system Console.
 
 The Apply button maps the currently displayed palette on the image file specified by the Input File Path, and writes the output to a file specified by the Output File Path.  TIFF, PNG, JPEG, and BMP file types are supported.
+
+# Demos
+Example Input File
+![Example Input File(ColorToyInput_demo.png "Input Example")
+Example Output File
+![Example Output File(ColorToyOut_demo.png "Output Example")
