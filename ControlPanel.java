@@ -14,9 +14,11 @@ public class ControlPanel extends JPanel{
 	private JLabel br_lbl, bg_lbl, bb_lbl;
 	private JLabel cr_lbl, cg_lbl, cb_lbl;
 	private JLabel dr_lbl, dg_lbl, db_lbl;
+	private JLabel out_lbl, in_lbl;
     private JButton update; //update all quantities
 	private JButton printer; //dump values to stdout
 	private JButton randbtn; //randomize starting values
+	private JButton apply; //apply color palette to input image
     private JTextField ar_txt = new JTextField(4);
     private JTextField ag_txt = new JTextField(4);
     private JTextField ab_txt = new JTextField(4);
@@ -29,7 +31,10 @@ public class ControlPanel extends JPanel{
     private JTextField dr_txt = new JTextField(4);
     private JTextField dg_txt = new JTextField(4);
     private JTextField db_txt = new JTextField(4);
+	private JTextField out_txt = new JTextField(20);
+	private JTextField in_txt = new JTextField(20);
 	private JPanel params = new JPanel();
+	private JPanel btnarea = new JPanel();
 
     private ColorToyPanel colortoy;
 
@@ -51,6 +56,9 @@ public class ControlPanel extends JPanel{
 		db_txt.setText("0.90");
 		dg_txt.setText("0.30");
 
+		out_txt.setText("/tmp/ColorToyOut.png");
+		in_txt.setText("/tmp/ColorToyInput.png");
+
 		ar_lbl = new JLabel("A-red");
 		ab_lbl = new JLabel("A-blue");
 		ag_lbl = new JLabel("A-green");
@@ -63,6 +71,10 @@ public class ControlPanel extends JPanel{
 		dr_lbl = new JLabel("D-red");
 		db_lbl = new JLabel("D-blue");
 		dg_lbl = new JLabel("D-green");
+		out_lbl = new JLabel("Output File Path:  ");
+		out_lbl.setHorizontalAlignment(SwingConstants.RIGHT);
+		in_lbl = new JLabel("Input File Path:  ");
+		in_lbl.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		func_lbl = new JLabel("color(t) = a + b * cos[2pi(c*t+d)]");
 
@@ -70,11 +82,13 @@ public class ControlPanel extends JPanel{
 	update = new JButton("Update");
 	printer = new JButton("Print");
 	randbtn = new JButton("Random");
+	apply = new JButton("Apply");
 	this.colortoy = colortoypanel;
 
 	update.addActionListener(new ButtonListener(update));
 	printer.addActionListener(new PrintListener(printer));
 	randbtn.addActionListener(new RandomListener(randbtn));
+	apply.addActionListener(new ApplyListener(apply));
 
 	add(func_lbl);
 	add(Box.createRigidArea(new Dimension(50, 0)));
@@ -105,9 +119,16 @@ public class ControlPanel extends JPanel{
 	params.add(db_txt);
 	add(params);
 	add(Box.createRigidArea(new Dimension(50, 0)));
-	add(update);
-	add(randbtn);
-	add(printer);
+	btnarea.setLayout(new GridLayout(4, 2));
+	btnarea.add(randbtn);
+	btnarea.add(update);
+	btnarea.add(printer);
+	btnarea.add(apply);
+	btnarea.add(in_lbl);
+	btnarea.add(in_txt);
+	btnarea.add(out_lbl);
+	btnarea.add(out_txt);
+	add(btnarea);
 
     }
 
@@ -162,6 +183,38 @@ public class ControlPanel extends JPanel{
 	    }
 	    catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "Unknown error printing values.", "Error", JOptionPane.ERROR_MESSAGE);
+	    }
+	}
+	}
+
+    private class ApplyListener implements ActionListener{
+	
+	private JButton button;
+	private LoadImageUtil imageloader;
+	
+	public ApplyListener (JButton button) {
+	    this.button = button;
+	}
+
+	public void actionPerformed (ActionEvent event) {
+
+		if(out_txt.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Output file path cannot be blank.", "Error", JOptionPane.ERROR_MESSAGE);
+			return;		
+		}
+
+		if(in_txt.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Input file path cannot be blank.", "Error", JOptionPane.ERROR_MESSAGE);
+			return;		
+		}					
+	    
+	    try {
+			imageloader = new LoadImageUtil(in_txt.getText());
+			imageloader.applyColorPalette(colortoy);
+			imageloader.writeOutImage(out_txt.getText());  
+	    }
+	    catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Could not apply palette to image.", "Error", JOptionPane.ERROR_MESSAGE);
 	    }
 	}
 	}
