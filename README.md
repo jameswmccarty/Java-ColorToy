@@ -28,13 +28,13 @@ Compile the project with: `javac *.java`
 
 Then run: `java ColorToy`
 
-The Random button scrambles all parameter values.
+The 'Randomize Values' button scrambles all parameter values.
 
-The Update button redraws the color bar.
+The 'Update Display Bar' button redraws the color bar.
 
-The Print button outputs the function parameters to the system Console.
+The 'Print to Console' button outputs the function parameters to the system Console.
 
-The Apply button maps the currently displayed palette on the image file specified by the Input File Path, and writes the output to a file specified by the Output File Path.  TIFF, PNG, JPEG, and BMP file types are supported.
+The 'Apply to Input File' button maps the currently displayed palette on the image file specified by the Input File Path, and writes the output to a file location specified by the Output File Path.  TIFF, PNG, JPEG, and BMP file types are supported.
 
 # Demos
 Example Input File

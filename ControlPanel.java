@@ -79,10 +79,10 @@ public class ControlPanel extends JPanel{
 		func_lbl = new JLabel("color(t) = a + b * cos[2pi(c*t+d)]");
 
        
-	update = new JButton("Update");
-	printer = new JButton("Print");
-	randbtn = new JButton("Random");
-	apply = new JButton("Apply");
+	update = new JButton("Update Display Bar");
+	printer = new JButton("Print to Console");
+	randbtn = new JButton("Randomize Values");
+	apply = new JButton("Apply to Input File");
 	this.colortoy = colortoypanel;
 
 	update.addActionListener(new ButtonListener(update));
