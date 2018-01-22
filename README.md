@@ -23,10 +23,14 @@ o Canvas.java (a draw-able surface)
 
 o Point.java (x-y point class for use with Canvas)
 
+o ColorToy.jar (compiled class files in an executable bundle)
+
 
 Compile the project with: `javac *.java`
 
 Then run: `java ColorToy`
+
+Alternately, download the JAR file and execute: `java -jar ColorToy.jar`
 
 The 'Randomize Values' button scrambles all parameter values.
 
